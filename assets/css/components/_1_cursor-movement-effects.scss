@@ -1,0 +1,45 @@
+@use '../base' as *;
+
+/* -------------------------------- 
+
+File#: _1_cursor-movement-effects
+Title: Cursor Movement Effects
+Descr: Animate elements on mouse move
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.cursor-fx-target {
+  position: relative;
+  background-color: var(--color-bg-dark);
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-lg);
+
+  &:hover .cursor-fx-object {
+    transition: transform 0.5s var(--ease-out);
+  }
+}
+
+.cursor-fx-object {
+  position: absolute;
+  transition: transform 0.3s var(--ease-out-back);
+}
+
+.cursor-fx-object--1 {
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-md);
+  height: 100px;
+  width: 100px;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+}
+
+.cursor-fx-object--2 {
+  background-color: var(--color-primary);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+}

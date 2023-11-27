@@ -1,0 +1,146 @@
+@use '../base' as *;
+
+/* -------------------------------- 
+
+File#: _1_chameleonic-header
+Title: Chameleonic Header
+Descr: Header component whose theme adapts on scroll to the underneath section
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --cha-header-height: 50px;
+
+  @include breakpoint(md) {
+    --cha-header-height: 50px;
+  }
+}
+
+.cha-header-clip { 
+  position: absolute;
+  z-index: var(--z-index-header);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  // hide .cha-header when outside its parent
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
+}
+
+.cha-header {
+  height: var(--cha-header-height);
+  background-color: alpha(var(--color-bg), 0.95);
+  pointer-events: auto;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.cha-header__logo {
+  display: block;
+  width: 500px; // logo width
+  height: 50px; // logo height
+}
+
+.cha-header__nav {
+  display: none; // nav visible on bigger screens
+}
+
+.cha-header__link {
+  color: var(--color-contrast-higher);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  transition: opacity .3s;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.cha-header__btn {
+  background-color: var(--color-primary);
+  padding: var(--space-xxs) var(--space-sm);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  transition: transform .2s, background-color .2s;
+
+  &:hover {
+    background-color: lightness(var(--color-primary), 0.9);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  &:focus {
+    outline: 2px solid alpha(var(--color-primary), 0.2);
+    outline-offset: 2px;
+  }
+}
+
+.cha-header__trigger,
+.cha-modal__close { 
+  display: block;
+
+  .icon {
+    --size: 24px;
+    display: block;
+  }
+}
+
+// modal (navigation visible on smaller screens)
+.cha-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-bg);
+  display: none;
+  z-index: var(--z-index-fixed-element);
+}
+
+.cha-modal__header {
+  height: var(--cha-header-height);
+  background-color: var(--color-bg);
+  box-shadow: 0 3px 5px var(--color-bg);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.cha-modal__link {
+  font-size: var(--text-lg);
+  text-decoration: none;
+  color: var(--color-contrast-higher);
+  padding: var(--space-xxxs) 0;
+}
+
+// demo dark color theme
+.demo-theme-dark { // codyframe colors 👉 https://codyhouse.co/ds/docs/framework/colors#themes
+  @include defineColorHSL(--color-primary, 349, 75%, 51%);
+  @include defineColorHSL(--color-bg, 240, 8%, 12%);
+  @include defineColorHSL(--color-contrast-high, 0, 0%, 95%);
+  @include defineColorHSL(--color-contrast-higher, 0, 0%, 100%);
+
+  background-color: var(--color-bg);
+  color: var(--color-contrast-high);
+}
+
+@include breakpoint(md) {
+  .cha-header__nav {
+    display: block;
+  }
+
+  .cha-header__trigger, .cha-modal {
+    display: none !important;
+  }
+}

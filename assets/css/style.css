@@ -13982,6 +13982,14 @@ Usage: codyhouse.co/license
 
 /* -------------------------------- 
 
+File#: _2_modal-video
+Title: Modal Video
+Descr: A modal window used to display a responsive video
+Usage: codyhouse.co/license
+
+-------------------------------- */
+/* -------------------------------- 
+
 File#: _2_team
 Title: Team
 Descr: A gallery of team members
@@ -14549,6 +14557,67 @@ Usage: codyhouse.co/license
     content: "desktop";
   }
 }
+/* -------------------------------- 
+
+File#: _3_video-gallery
+Title: Video Gallery
+Descr: A list of video previews opening a modal window
+Usage: codyhouse.co/license
+
+-------------------------------- */
+.video-card__modal-control {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  margin-bottom: var(--space-sm);
+}
+.video-card__modal-control:hover .video-card__preview {
+  filter: contrast(110%);
+  box-shadow: var(--shadow-md);
+}
+.video-card__modal-control:hover .video-card__play-btn::before {
+  transform: scale(1.2);
+}
+
+.video-card__preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: filter 0.3s, box-shadow 0.3s;
+}
+
+.video-card__play-btn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+}
+.video-card__play-btn .icon {
+  position: relative;
+  z-index: 1;
+}
+.video-card__play-btn::before {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  background-color: hsla(var(--color-black-h), var(--color-black-s), var(--color-black-l), 0.8);
+  border-radius: 50%;
+  transition: transform 0.3s var(--ease-out-back);
+}
+
 /* -------------------------------- 
 
 File#: _4_intro
